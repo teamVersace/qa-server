@@ -103,4 +103,4 @@ dist
 # TernJS port file
 .tern-port
 
-sesrver/ETL/CSVS
+*.csv

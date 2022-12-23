@@ -10,7 +10,7 @@
   "name": "qa-server",
   "description": "",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "server/",
   "devDependencies": {
     "eslint": "^8.30.0",
     "eslint-config-airbnb": "^19.0.4",
