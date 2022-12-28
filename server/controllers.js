@@ -4,9 +4,9 @@ module.exports = {
   getQuestions: (req, res) => {
     models.getQuestions((err, response) => {
       if (err) {
-        res.status(400).send('error controller: ', err);
+        res.status(400);
       } else {
-        res.status(200).send(response);
+        res.status(200).send(response.rows);
       }
     })
   },
