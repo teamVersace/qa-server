@@ -3,14 +3,14 @@ const express = require('express');
 const cors = require('cors');
 const path = require('path');
 const controllers = require('./controllers.js');
+const db = require('./db/index.js');
+const morgan = require('morgan');
 
-const app = express(); // calling express as a function, we create an application to setup server
+const app = express();
 const PORT = process.env.PORT || 8080;
 
-const clientDirPath = path.join(__dirname, '../client/dist');
-
 app.use(express.json());
-app.use(express.static(clientDirPath));
+app.use(express.static(path.join(__dirname, '../client/dist')));
 
 app.use(
   cors({
