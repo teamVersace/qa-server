@@ -3,37 +3,37 @@ CREATE DATABASE qadb;
 
 \c qadb;
 
-CREATE TABLE photoList (
-  photo_id SERIAL PRIMARY KEY UNIQUE,
-  photo VARCHAR
+CREATE TABLE questions (
+  id SERIAL NOT NULL UNIQUE,
+  product_id INTEGER,
+  q_body VARCHAR,
+  q_date TIMESTAMPTZ,
+  q_by VARCHAR,
+  q_email VARCHAR,
+  q_helpful INTEGER,
+  q_reported INTEGER,
+  PRIMARY KEY (id)
 );
 
-CREATE TABLE answerList (
-  answer_id SERIAL PRIMARY KEY UNIQUE,
-  body VARCHAR,
-  date TIMESTAMPTZ,
-  answerer_name VARCHAR,
-  helpfulness INTEGER,
-  photo_id INTEGER
+CREATE TABLE answers (
+  id SERIAL NOT NULL UNIQUE,
+  q_id INTEGER,
+  a_body VARCHAR,
+  a_date TIMESTAMPTZ,
+  a_by VARCHAR,
+  a_email VARCHAR,
+  a_helpful INTEGER,
+  a_reported INTEGER,
+  PRIMARY KEY (id),
+  FOREIGN KEY (q_id) REFERENCES questions (id)
 );
 
-CREATE TABLE questionsList (
-  question_id SERIAL PRIMARY KEY UNIQUE,
-  answer_id INTEGER REFERENCES answerList(answer_id),
-  question_body VARCHAR,
-  question_date TIMESTAMPTZ,
-  asker_name VARCHAR,
-  question_helpfulness INTEGER,
-  reported BOOLEAN
+CREATE TABLE photos (
+  id SERIAL NOT NULL UNIQUE,
+  a_id INTEGER,
+  p_url VARCHAR,
+  PRIMARY KEY (id),
+  FOREIGN KEY (a_id) REFERENCES answers (id)
 );
-
-CREATE TABLE productQuestions (
-  product_id INTEGER UNIQUE,
-  question_id SERIAL UNIQUE
-);
-
-ALTER TABLE answerList ADD FOREIGN KEY (photo_id) REFERENCES photoList(photo_id);
-ALTER TABLE questionsList ADD FOREIGN KEY (answer_id) REFERENCES answerList(answer_id);
-ALTER TABLE productQuestions ADD FOREIGN KEY (question_id) REFERENCES questionsList(question_id);
 
 \c postgres
