@@ -1,7 +1,9 @@
+// eslint-disable-next-line import/no-unresolved
 const mongoose = require('mongoose');
+
 mongoose.connect('/qa/questions');
 
-const qaPhotoSchema = new mongoose.Schema ({
+const qaPhotoSchema = new mongoose.Schema({
   photo: String,
 });
 
@@ -14,7 +16,7 @@ const qaASchema = new mongoose.Schema({
   Photos: [qaPhotoSchema],
 });
 
-const qaQSchema = new mongoose.Schema ({
+const qaQSchema = new mongoose.Schema({
   question_id: { type: Number, unique: true },
   question_body: String,
   question_date: Date,
@@ -24,7 +26,7 @@ const qaQSchema = new mongoose.Schema ({
   answers: [qaASchema],
 });
 
-const qaSchema = new mongoose.Schema ({
+const qaSchema = new mongoose.Schema({
   product_id: { type: Number, unique: true },
   questions: [qaQSchema],
 });

@@ -4,36 +4,38 @@ CREATE DATABASE qadb;
 \c qadb;
 
 CREATE TABLE questions (
-  id SERIAL NOT NULL UNIQUE,
+  question_id SERIAL NOT NULL UNIQUE,
   product_id INTEGER,
-  q_body VARCHAR,
-  q_date TIMESTAMPTZ,
-  q_by VARCHAR,
+  question_body VARCHAR,
+  question_date BIGINT,
+  asker_name VARCHAR,
   q_email VARCHAR,
-  q_helpful INTEGER,
-  q_reported INTEGER,
-  PRIMARY KEY (id)
+  question_helpfulness INTEGER,
+  reported INTEGER,
+  -- answers VARCHAR[],
+  PRIMARY KEY (question_id)
 );
 
 CREATE TABLE answers (
   id SERIAL NOT NULL UNIQUE,
-  q_id INTEGER,
-  a_body VARCHAR,
-  a_date TIMESTAMPTZ,
-  a_by VARCHAR,
+  question_id INTEGER,
+  body VARCHAR,
+  date BIGINT,
+  answerer_name VARCHAR,
   a_email VARCHAR,
-  a_helpful INTEGER,
+  helpfulness INTEGER,
   a_reported INTEGER,
+  -- photos VARCHAR[],
   PRIMARY KEY (id),
-  FOREIGN KEY (q_id) REFERENCES questions (id)
+  FOREIGN KEY (question_id) REFERENCES questions (question_id)
 );
 
 CREATE TABLE photos (
   id SERIAL NOT NULL UNIQUE,
-  a_id INTEGER,
-  p_url VARCHAR,
+  answer_id INTEGER,
+  url VARCHAR,
   PRIMARY KEY (id),
-  FOREIGN KEY (a_id) REFERENCES answers (id)
+  FOREIGN KEY (answer_id) REFERENCES answers (id)
 );
 
 \c postgres

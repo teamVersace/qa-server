@@ -1,5 +1,5 @@
 const qaRouter = require('express').Router();
-const controllers = require('./controllers.js');
+const controllers = require('./controllers');
 
 qaRouter.get('/qa/questions', controllers.getQuestions);
 qaRouter.get('/qa/questions/:question_id/answers', controllers.getAnswers);

@@ -1,14 +1,16 @@
-const models = require('./models.js');
+const models = require('./models');
 
 module.exports = {
   getQuestions: (req, res) => {
     models.getQuestions((err, response) => {
       if (err) {
-        res.status(400);
+        console.log('error in controller');
+        res.status(400).send();
       } else {
-        res.status(200).send(response.rows);
+        console.log('success in controller');
+        res.status(200).send(response);
       }
-    })
+    });
   },
 
   getAnswers: () => {
