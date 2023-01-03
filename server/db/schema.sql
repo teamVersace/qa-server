@@ -4,7 +4,7 @@ CREATE DATABASE qadb;
 \c qadb;
 
 CREATE TABLE questions (
-  question_id SERIAL NOT NULL UNIQUE,
+  T SERIAL NOT NULL UNIQUE,
   product_id INTEGER,
   question_body VARCHAR,
   question_date BIGINT,
