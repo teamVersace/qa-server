@@ -4,7 +4,7 @@ CREATE DATABASE qadb;
 \c qadb;
 
 CREATE TABLE questions (
-  T SERIAL NOT NULL UNIQUE,
+  question_id SERIAL NOT NULL UNIQUE,
   product_id INTEGER,
   question_body VARCHAR,
   question_date BIGINT,
@@ -37,5 +37,8 @@ CREATE TABLE photos (
   PRIMARY KEY (id),
   FOREIGN KEY (answer_id) REFERENCES answers (id)
 );
+
+CREATE INDEX name here ON table (column);
+CREATE INDEX name here ON table (column);
 
 \c postgres
