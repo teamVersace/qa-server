@@ -38,7 +38,8 @@ CREATE TABLE photos (
   FOREIGN KEY (answer_id) REFERENCES answers (id)
 );
 
-CREATE INDEX name here ON table (column);
-CREATE INDEX name here ON table (column);
+CREATE INDEX product_index ON questions (product_id);
+CREATE INDEX question_index ON answers (question_id);
+CREATE INDEX answer_index ON photos (answer_id);
 
 \c postgres
