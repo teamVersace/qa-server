@@ -18,6 +18,6 @@ module.exports = {
   ],
   rules: {
     'no-console': 0,
-    extensions: ['', '.js', '.jsx'],
+    // extensions: ['', '.js', '.jsx'],
   },
 };

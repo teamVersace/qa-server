@@ -1,31 +1,24 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
-const path = require('path');
-const controllers = require('./controllers.js');
+const morgan = require('morgan');
+const qaRouter = require('./router');
 
-const app = express(); // calling express as a function, we create an application to setup server
-const PORT = process.env.PORT || 8080;
+const corsOptions = {
+  origin: 'http://localhost/',
+  methods: ['get', 'post', 'put', 'patch'],
+  maxAge: '3600',
+};
 
-const clientDirPath = path.join(__dirname, '../client/dist');
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+qaRouter.use(cors(corsOptions));
 
 app.use(express.json());
-app.use(express.static(clientDirPath));
+app.use(express.urlencoded({ extended: true }));
 
-app.use(
-  cors({
-    origin: '*',
-    methods: ['get', 'post', 'put', 'patch'],
-  }),
-);
-
-app.get('/qa/questions', controllers.getQuestions);
-app.get('/qa/questions/:question_id/answers', controllers.getAnswers);
-app.post('/qa/questions', controllers.postQuestions);
-app.post('/qa/questions/:question_id/answers', controllers.postAnswers);
-app.put('/qa/questions/:question_id/helpful', controllers.helpfulQuestion);
-app.put('/qa/questions/:question_id/report', controllers.reportQuestion);
-app.put('/qa/answers/:question_id/helpful', controllers.helpfulAnswer);
-app.put('/qa/answers/:question_id/report', controllers.reportAnswer);
+app.use(qaRouter);
+app.use(morgan('dev'));
 
 app.listen(PORT, console.log(`Now listening on http://localhost:${PORT}`));
