@@ -76,7 +76,6 @@ module.exports = {
       WHERE answer_id IN (SELECT id FROM answers WHERE question_id = ${questionId})`;
     pool.query(queryA, (err1, result1) => {
       if (err1) {
-        console.log('emodels error1 > getAnswersr: ', err1);
         callback(err1);
       } else {
         pool.query(queryP, (err2, result2) => {
@@ -97,7 +96,6 @@ module.exports = {
             }
           }
           if (err2) {
-            console.log('emodels error2 > getAnswersr: ', err2);
             callback(err2);
           } else {
             callback(err2, result1.rows);
@@ -131,7 +129,6 @@ module.exports = {
     )`;
     pool.query(queryQ, (err, result) => {
       if (err) {
-        console.log('models error > postQuestions');
         callback(err);
       } else {
         callback(err, result);
@@ -186,7 +183,6 @@ module.exports = {
   },
 
   reportQuestion: (data, callback) => {
-    console.log('data: ', data);
     const questionId = data.question_id;
     const queryQ = `UPDATE questions
     SET reported = reported + 1

@@ -11,14 +11,14 @@ const corsOptions = {
 };
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PGPORT = process.env.PGPORT || 3000;
 
 qaRouter.use(cors(corsOptions));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use(qaRouter);
 app.use(morgan('dev'));
+app.use(qaRouter);
 
-app.listen(PORT, console.log(`Now listening on http://localhost:${PORT}`));
+app.listen(PGPORT, console.log(`Port ${PGPORT}`));
