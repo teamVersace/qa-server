@@ -197,7 +197,6 @@ module.exports = {
   },
 
   helpfulAnswer: (data, callback) => {
-    console.log('data: ', data);
     const answerId = data.question_id;
     const queryA = `UPDATE answers
     SET helpfulness = helpfulness + 1
