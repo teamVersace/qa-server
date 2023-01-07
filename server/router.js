@@ -1,6 +1,10 @@
 const qaRouter = require('express').Router();
 const controllers = require('./controllers');
 
+qaRouter.get('loaderio-ee60e09ecaecfcdfbb7ad389b9ce4295', (req, res) =>{
+  res.send('loaderio-ee60e09ecaecfcdfbb7ad389b9ce4295');
+});
+
 qaRouter.get('/qa/questions', controllers.getQuestions);
 qaRouter.get('/qa/questions/:question_id/answers', controllers.getAnswers);
 qaRouter.post('/qa/questions', controllers.postQuestions);

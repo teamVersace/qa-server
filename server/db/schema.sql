@@ -25,7 +25,6 @@ CREATE TABLE answers (
   a_email VARCHAR,
   helpfulness INTEGER,
   a_reported INTEGER,
-  -- photos VARCHAR[],
   PRIMARY KEY (id),
   FOREIGN KEY (question_id) REFERENCES questions (question_id)
 );
