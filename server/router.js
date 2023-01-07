@@ -1,7 +1,7 @@
 const qaRouter = require('express').Router();
 const controllers = require('./controllers');
 
-qaRouter.get('loaderio-ee60e09ecaecfcdfbb7ad389b9ce4295', (req, res) =>{
+qaRouter.get('loaderio-ee60e09ecaecfcdfbb7ad389b9ce4295', (req, res) => {
   res.send('loaderio-ee60e09ecaecfcdfbb7ad389b9ce4295');
 });
 
